@@ -29,11 +29,11 @@ describe('ValidationSet', () => {
       });
 
       it('provides a key for value1 in the error hash', () => {
-        expect(result['input1']).to.not.be.undefined;
+        expect(result.input1).to.not.be.undefined;
       });
 
       it('provdes an error message in the error hash at the key for value1', () => {
-        expect(result['input1'].length).to.eql(1);
+        expect(result.input1.length).to.eql(1);
       });
     });
 
@@ -63,11 +63,11 @@ describe('ValidationSet', () => {
       });
 
       it('provides a key for value1 in the error hash', () => {
-        expect(result['input1']).to.not.be.undefined;
+        expect(result.input1).to.not.be.undefined;
       });
 
       it('provdes two error messages in the error hash at the key for value1', () => {
-        expect(result['input1'].length).to.eql(2);
+        expect(result.input1.length).to.eql(2);
       });
     });
   });
@@ -84,13 +84,13 @@ describe('ValidationSet', () => {
       });
 
       it('provides keys for email and password in the error hash', () => {
-        expect(result['email']).to.not.be.undefined;
-        expect(result['password']).to.not.be.undefined;
+        expect(result.email).to.not.be.undefined;
+        expect(result.password).to.not.be.undefined;
       });
 
       it('provides error messages in hash for email and password', () => {
-        expect(result['email'].length).to.eql(1);
-        expect(result['password'].length).to.eql(1);
+        expect(result.email.length).to.eql(1);
+        expect(result.password.length).to.eql(1);
       });
     });
 
@@ -124,8 +124,8 @@ describe('ValidationSet', () => {
           password: 'some value',
           password_confirmation: 'some other value',
         });
-        expect(result['password_confirmation']).to.not.be.undefined;
-        expect(result['password_confirmation'].length).to.eql(1);
+        expect(result.password_confirmation).to.not.be.undefined;
+        expect(result.password_confirmation.length).to.eql(1);
       });
     });
 
@@ -147,11 +147,11 @@ describe('ValidationSet', () => {
       });
 
       it('provides an error for password', () => {
-        expect(result['password']).to.eql(['Must be at least 100 characters']);
+        expect(result.password).to.eql(['Must be at least 100 characters']);
       });
 
       it('provides two errors for password_confirmation', () => {
-        expect(result['password_confirmation']).to.eql([
+        expect(result.password_confirmation).to.eql([
           'Cannot be more than 1 characters',
           'Does not match',
         ]);

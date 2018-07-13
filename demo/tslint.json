@@ -21,7 +21,7 @@
       "trailing-comma": false,
       "max-classes-per-file": [true, 10],
       "max-line-length": {
-          "options": [110]
+          "options": [120]
       }
     },
     "rules": {
