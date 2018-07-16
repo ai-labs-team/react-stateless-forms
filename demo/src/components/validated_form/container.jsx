@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { always, evolve, merge, omit, pathOr } from 'ramda';
-import { commands, container, message, PARENT, replace } from 'casium';
+import { /* always, evolve, */ merge, omit, /* pathOr */ } from 'ramda';
+import { /* commands, */ container, /* message, */ PARENT, replace } from 'casium';
 import Message, { Activate, Deactivate, Refresh } from 'casium/message';
-import { Post } from 'casium/commands/http';
+// import { Post } from 'casium/commands/http';
 
 /*
 import { AuthenticatedPatch, AuthenticatedPost, AuthenticatedPut } from 'messages/commands/http';
@@ -39,7 +39,7 @@ const requestTypes = {
 };
 */
 
-const ValidatedFormWrapper = ({ emit, type, onUpdate, ...props }) => (
+const ValidatedFormWrapper = ({ emit, /* type, */ onUpdate, ...props }) => (
   <ValidatedForm
     {...props}
     onUpdate={onUpdate || emit(FormUpdate)}
@@ -57,6 +57,7 @@ ValidatedFormWrapper.defaultProps = {
   type: 'add',
 };
 
+/*
 const httpAction = constructAction => (model, {}, { token, services }) => ([
   merge(model, { submitting: true }),
   new constructAction({
@@ -68,6 +69,7 @@ const httpAction = constructAction => (model, {}, { token, services }) => ([
     always: ToggleSubmittingFalse,
   }),
 ]);
+*/
 
 const saveFormUrl = (state, { formUrl }) => merge(state, { formUrl });
 
@@ -106,7 +108,7 @@ const ValidatedFormContainer = container({
     [FormSubmissionPut, httpAction(AuthenticatedPut)],
 */
 
-    [FormUpdate, (state, data) => merge(state, { fieldValues: data, resultValues: data })]
+    [FormUpdate, (state, data) => merge(state, { fieldValues: data, resultValues: data })],
 
 /*
 

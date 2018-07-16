@@ -38,6 +38,7 @@ const canSetSelectionRangeOnEmailType = () => {
   } catch (e) {
     return false;
   }
+
   return true;
 };
 

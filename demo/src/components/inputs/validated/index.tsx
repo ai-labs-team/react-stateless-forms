@@ -28,7 +28,7 @@ const eventToObject = (e: any) => {
   return assocPath(path, value, {});
 };
 
-const hasErrorMessages = ({ errors, name }: { errors?: object, name: string }) =>
+const hasErrorMessages = ({ errors, name }: { errors?: object; name: string }) =>
   errors && errors[name] && !isEmpty(errors[name]);
 const toError = (error: string) => <p className='error-message' key={error.trim()}>{error}</p>;
 
