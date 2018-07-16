@@ -8,7 +8,11 @@ import Validated from './components/inputs/validated';
 import ValidationSet from './utils/validation_set';
 import IsRequiredValidator from './validators/is_required_validator';
 
-const MockInput: React.SFC = (props: any) => <input />;
+const MockInput: React.SFC = (props: any) =>
+  <div>
+    {props.label && <label htmlFor={props.name}>{props.label}</label>}
+    <input onChange={props.onChange}/>
+  </div>;
 
 const ValidatedTextInput = Validated(MockInput);
 
@@ -24,7 +28,7 @@ class App extends React.Component {
         <header className='App-header'>
           <h1 className='App-title'>casium-forms demo</h1>
         </header>
-        <p className='App-intro'>
+        <div className='App-intro'>
           <ValidatedForm
             errors={[]}
             validationSet={validations}
@@ -34,9 +38,9 @@ class App extends React.Component {
           >
             <ValidatedTextInput
               name='requiredInput'
-              label={'Test Input'} />
+              label='Test Input' />
           </ValidatedForm>
-        </p>
+        </div>
       </div>
     );
   }
