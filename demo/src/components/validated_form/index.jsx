@@ -38,9 +38,8 @@ const isSubmittable = ({ submitting, fieldErrors, validators }) =>
 const validatedChildren =
   (children, { submitting, fieldErrors, onUpdate, fieldValues, validationSet: { validators } }) =>
     cloneRecursive(children, child => {
-      if (!child || !child.type || !child.props) {
-        return {};
-      }
+      if (!child || !child.type || !child.props) { return {}; }
+
       const { props } = child;
       const key = child.key || props.name;
 
@@ -52,9 +51,7 @@ const validatedChildren =
       let label = '';
 
       if (props.hasOwnProperty('label')) {
-        label = (validators[key] || []).some(is(IsRequiredValidator)) ?
-          `${props.label} is required` :
-          props.label;
+        label = (validators[key] || []).some(is(IsRequiredValidator)) ? `${props.label}*` : props.label;
       }
 
       return !formRole ? {} : merge(base, {
