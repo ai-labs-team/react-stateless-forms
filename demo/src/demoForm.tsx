@@ -10,7 +10,7 @@ import IsRequiredValidator from './validators/is_required_validator';
 
 import TextInput from './components/inputs/formatted_input/text_input';
 
-const ValidatedTextInput: React.SFC<any> = Validated(TextInput) as any;
+const ValidatedTextInput = Validated(TextInput);
 
 export type Props = {
   fieldValues: object,

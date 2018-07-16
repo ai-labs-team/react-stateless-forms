@@ -32,7 +32,7 @@ const hasErrorMessages = ({ errors, name }: { errors?: object, name: string }) =
   errors && errors[name] && !isEmpty(errors[name]);
 const toError = (error: string) => <p className='error-message' key={error.trim()}>{error}</p>;
 
-export default <P extends {} = {}>(Child: React.ComponentType<P>) =>
+export default <P extends {} = React.SFC<any>>(Child: React.ComponentType<P>): any =>
   Object.assign(
     withProps(
       {
