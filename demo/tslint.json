@@ -46,7 +46,12 @@
       "max-classes-per-file": [true, 10],
       "max-line-length": {
           "options": [120]
-      }
+      },
+      "variable-name": [
+        true,
+        "check-format",
+        "allow-pascal-case"
+      ]
     },
     "rulesDirectory": []
 }

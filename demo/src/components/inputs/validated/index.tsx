@@ -33,17 +33,22 @@ const hasErrorMessages = ({ errors, name }: { errors?: object, name: string }) =
 const toError = (error: string) => <p className='error-message' key={error.trim()}>{error}</p>;
 
 export default <P extends {} = {}>(Child: React.ComponentType<P>) =>
-  Object.assign(withProps<ValidatedProps & P, ValidatedComputedProps>({
-    error: hasErrorMessages,
-    onChange: ({ onValidate, onChange }) => (event) => {
-      onChange && onChange(event);
-      onValidate(eventToObject(event));
-    },
-    errorMessages: ({ errors, name }) =>
-      hasErrorMessages({ errors, name }) && toError(errors[name][0]) || null,
-  }, ({ errorMessages, ...props }: ValidatedProps & ValidatedComputedProps) => (
-    <div className='error-container'>
-      <Child {...omit(['onValidate', 'errors'], props)} />
-      {errorMessages}
-    </div>
-  )), { formRole: { input: true }, displayName: `Validated(${Child.displayName || 'Unknown'})` });
+  Object.assign(
+    withProps(
+      {
+        error: hasErrorMessages,
+        onChange: ({ onValidate, onChange }: any) => (event: Event) => {
+          onChange && onChange(event);
+          onValidate(eventToObject(event));
+        },
+        errorMessages: ({ errors, name }: any) =>
+          hasErrorMessages({ errors, name }) && toError(errors[name][0]) || null,
+      },
+      ({ errorMessages, ...props }: ValidatedProps & ValidatedComputedProps) => (
+        <div className='error-container'>
+          <Child {...omit(['onValidate', 'errors'], props) as any} />
+          {errorMessages}
+        </div>
+      )),
+    { formRole: { input: true }, displayName: `Validated(${Child.displayName || 'Unknown'})` }
+  );
