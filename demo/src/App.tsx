@@ -1,20 +1,15 @@
 import * as React from 'react';
 import './App.css';
 
-import ValidatedForm from './components/validated_form/index';
-// import TextInput from './components/inputs/formatted_input/text_input';
-
 import Validated from './components/inputs/validated';
+import ValidatedForm from './components/validated_form/index';
 import ValidationSet from './utils/validation_set';
+
 import IsRequiredValidator from './validators/is_required_validator';
 
-const MockInput: React.SFC = (props: any) =>
-  <div>
-    {props.label && <label htmlFor={props.name}>{props.label}</label>}
-    <input onChange={props.onChange}/>
-  </div>;
+import TextInput from './components/inputs/formatted_input/text_input';
 
-const ValidatedTextInput = Validated(MockInput);
+const ValidatedTextInput = Validated(TextInput);
 
 const validations = new ValidationSet({
   requiredInput: [new IsRequiredValidator()],
@@ -38,7 +33,8 @@ class App extends React.Component {
           >
             <ValidatedTextInput
               name='requiredInput'
-              label='Test Input' />
+              label='Test Input'
+            />
           </ValidatedForm>
         </div>
       </div>

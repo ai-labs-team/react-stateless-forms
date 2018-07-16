@@ -38,6 +38,7 @@
       "interface-over-type-literal": false,
       "strict-boolean-expressions": false,
       "no-boolean-literal-compare": false,
+      "no-this-assignment": false,
       "object-shorthand-properties-first": false,
       "no-shadowed-variable": false,
       "no-empty": false,
