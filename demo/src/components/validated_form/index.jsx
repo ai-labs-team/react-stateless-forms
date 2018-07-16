@@ -53,7 +53,7 @@ const validatedChildren =
 
       if (props.hasOwnProperty('label')) {
         label = (validators[key] || []).some(is(IsRequiredValidator)) ?
-          `${props.label}${t('util.requiredFieldSuffix')}` :
+          `${props.label} is required` :
           props.label;
       }
 
