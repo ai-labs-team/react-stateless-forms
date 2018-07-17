@@ -97,7 +97,8 @@ export default class FormattedInput extends React.Component<FormattedInputProps,
   public componentDidUpdate({ }: FormattedInputProps, prevState: FormattedInputState): void {
     const shouldOverrideSelectionRange =
       selectionRangeOverrideTypes.includes(this.props.type) &&
-      prevState.currentValue !== this.state.currentValue;
+      prevState.currentValue !== this.state.currentValue &&
+      document.activeElement === this.input;
 
     if (shouldOverrideSelectionRange) {
       this.overrideSelectionRange();
