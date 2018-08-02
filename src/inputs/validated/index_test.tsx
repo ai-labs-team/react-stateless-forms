@@ -1,8 +1,7 @@
 /* eslint-env node, mocha */
-
-import React from 'react';
-import Validated from 'components/inputs/validated';
-import TextInput from 'components/inputs/formatted_input/text_input';
+import * as React from 'react';
+import Validated from './';
+import TextInput from '../formatted_input/text_input';
 
 const ValidatedInput = Validated(TextInput);
 
