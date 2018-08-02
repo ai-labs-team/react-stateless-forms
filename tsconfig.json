@@ -1,0 +1,24 @@
+{
+  "include": ["./src/**/*", "./types/**/*"],
+  "exclude": ["node_modules", "**/*_test.ts", "**/*_test.tsx"],
+  "compilerOptions": {
+    "declaration": true,
+    "declarationDir": "./dist/",
+    "noResolve": false,
+    "jsx": "react",
+    "module": "commonjs",
+    "target": "es5",
+    "allowJs": false,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "outDir": "./dist/",
+    "lib": ["es7", "es2015", "dom"],
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types", "types"]
+  }
+}

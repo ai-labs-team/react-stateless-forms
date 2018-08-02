@@ -13,22 +13,20 @@
 // In the above example the Checkbox will not be wrapped and you will
 // end up mystified by the hidden machinations of the universe.
 
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import {
   pipe, all, has, isEmpty, isNil, flatten, map, uniq, values, merge, curry, defaultTo, is, any, keys, pickBy, path
 } from 'ramda';
-import ValidationSet from '../../utils/validation_set';
-import { ValidatedFormErrorsPropType } from '../../utils/prop_types';
+import ValidationSet from '../validation_set';
 import ErrorBox from '../error_box';
 import { withProps, cloneRecursive } from 'casium';
-import IsRequiredValidator from '../../validators/is_required_validator';
+import IsRequiredValidator from '../validators/is_required_validator';
 
 export const hasRequiredValidator = any(is(IsRequiredValidator));
 export const requiredFields = pipe(pickBy(hasRequiredValidator), keys);
 const noErrors = errors => isEmpty(flatten(values(errors)));
 const isFullyValidated = ({ fieldErrors, requiredKeys }) =>
-  fieldErrors && all(key => has(key, fieldErrors), requiredKeys);
+  fieldErrors && all(key => has(key as string, fieldErrors), requiredKeys);
 
 const isSubmittable = ({ submitting, fieldErrors, validators }) =>
   !submitting &&
@@ -75,47 +73,44 @@ const messageFromError = error => (
 
 const renderErrors = pipe(defaultTo([]), uniq, map(objToErrorMsg), map(messageFromError));
 
-const handleSubmit = curry(({ submitting, fieldErrors, validKeys, fieldValues, onSubmit }, event) => {
-  event.preventDefault();
+const handleSubmit = curry(({ submitting, fieldErrors, validationSet: { validators }, fieldValues, onSubmit }, event) => {
+  (event as Event).preventDefault();
 
-  if (isSubmittable({ submitting, fieldErrors, validKeys })) {
+  if (isSubmittable({ submitting, fieldErrors, validators })) {
     onSubmit(fieldValues);
   }
 });
 
-const newProps = {
-  validKeys: ({ validationSet }) => validationSet.validatorKeys,
-  fieldErrors: ({ validationSet, fieldValues }) => validationSet.validate(fieldValues),
+type ValidatedFormProps = {
+  fieldValues?: any[];
+  errors?: Array<{error: string; error_description: string} | string>;
+  onSubmit: (msg?: any) => void;
+  onUpdate: (msg?: any) => void;
+  submitting?: boolean;
+  validationSet?: ValidationSet,
+  children?: React.ReactNode,
 };
 
-const ValidatedForm = withProps(
-  newProps,
-  ({ validKeys, fieldErrors, fieldValues, submitting, onSubmit, onUpdate, children, errors, validationSet }) => (
+const ValidatedForm = withProps<ValidatedFormProps, any>(
+  {
+    validKeys: ({ validationSet }) => validationSet.validatorKeys,
+    fieldErrors: ({ validationSet, fieldValues }) => validationSet.validate(fieldValues),
+  },
+  ({
+    fieldErrors,
+    fieldValues = [],
+    submitting = false,
+    onSubmit,
+    onUpdate,
+    children,
+    errors,
+    validationSet = new ValidationSet() }) => (
     <div>
       { renderErrors(errors) }
-      <form onSubmit={handleSubmit({ submitting, fieldErrors, validKeys, fieldValues, onSubmit })}>
-        { validatedChildren(children, { submitting, fieldErrors, validKeys, onUpdate, fieldValues, validationSet }) }
+      <form onSubmit={handleSubmit({ submitting, fieldErrors, validationSet, fieldValues, onSubmit })}>
+        { validatedChildren(children, { submitting, fieldErrors, onUpdate, fieldValues, validationSet }) }
       </form>
     </div>
 ));
-
-ValidatedForm.propTypes = {
-  fieldValues: PropTypes.object,
-  errors: ValidatedFormErrorsPropType,
-  onSubmit: PropTypes.func,
-  onUpdate: PropTypes.func,
-  submitting: PropTypes.bool,
-  validationSet: PropTypes.instanceOf(ValidationSet),
-  children: PropTypes.node,
-};
-
-ValidatedForm.defaultProps = {
-  errors: [],
-  fieldValues: {},
-  onSubmit: () => {},
-  onUpdate: () => {},
-  submitting: false,
-  validationSet: new ValidationSet(),
-};
 
 export default ValidatedForm;

@@ -1,6 +1,6 @@
 import { curry, flatten, keys, map, mapObjIndexed, path, pick } from 'ramda';
 
-import { dottedPaths } from './utilities';
+import { dottedPaths } from '../utilities';
 
 /*
   Multi-validation aggregator for forms.
@@ -23,8 +23,9 @@ import { dottedPaths } from './utilities';
       email: ['Not a valid email'],
       password_confirmation: ['Does not match'] }
 */
-
 class ValidationSet {
+  validators: {};
+  validatorKeys: never[];
 
   constructor(validators = {}) {
     this.validators = validators;

@@ -19,8 +19,4 @@ export const paths = (obj: {}): string[][] => {
   return recurse(obj);
 };
 
-export const dottedPaths: (obj: {}) => string[] =
-  pipe(
-    paths,
-    map(join('.'))
-  );
+export const dottedPaths: (obj: {}) => string[] = pipe(paths, map(join('.')));

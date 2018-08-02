@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
 import { /* always, evolve, */ merge, omit, /* pathOr */ } from 'ramda';
 import { /* commands, */ container, /* message, */ PARENT, replace } from 'casium';
 import Message, { Activate, Deactivate, Refresh } from 'casium/message';
@@ -18,7 +17,7 @@ import ServerError, {
 } from 'messages/server_errors';
 */
 
-import ValidatedForm from './';
+import ValidatedForm from './index';
 
 /*
 export class FormSubmissionAuthPost extends Message {}
@@ -39,22 +38,10 @@ const requestTypes = {
 };
 */
 
-const ValidatedFormWrapper = ({ emit, /* type, */ onUpdate, ...props }) => (
-  <ValidatedForm
-    {...props}
-    onUpdate={onUpdate || emit(FormUpdate)}
-    onSubmit={() => {}}/> //emit(requestTypes[type])}/>
-);
 
-ValidatedFormWrapper.propTypes = {
-  emit: PropTypes.func.isRequired,
-  type: PropTypes.string,
-  onUpdate: PropTypes.func,
-};
-
-ValidatedFormWrapper.defaultProps = {
-  onUpdate: null,
-  type: 'add',
+type validProps = {
+  type: string,
+  onUpdate: Function,
 };
 
 /*
@@ -73,7 +60,7 @@ const httpAction = constructAction => (model, {}, { token, services }) => ([
 
 const saveFormUrl = (state, { formUrl }) => merge(state, { formUrl });
 
-const ValidatedFormContainer = container({
+export default container<validProps>({
 
   name: 'ValidatedFormContainer',
 
@@ -151,7 +138,10 @@ const ValidatedFormContainer = container({
 */
   ],
 
-  view: ValidatedFormWrapper,
+  view: ({ emit, type: string = 'add', onUpdate, ...props }) => (
+    <ValidatedForm
+      {...props}
+      onUpdate={onUpdate || emit(FormUpdate)}
+      onSubmit={() => {}}/> //emit(requestTypes[type])}/>
+  ),
 });
-
-export default ValidatedFormContainer;
