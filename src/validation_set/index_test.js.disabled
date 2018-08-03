@@ -1,6 +1,6 @@
 /* eslint-env node, mocha */
 
-import ValidationSet from './validation_set';
+import ValidationSet from './';
 import StringLengthValidator from './validators/string_length_validator';
 import EmailValidator from './validators/email_validator';
 import FieldMatchMetavalidator from './validators/field_match_metavalidator';
