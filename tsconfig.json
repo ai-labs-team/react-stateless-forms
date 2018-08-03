@@ -13,12 +13,13 @@
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "sourceMap": true,
+    "strict": false,
     "noImplicitAny": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "outDir": "./dist/",
     "lib": ["es7", "es2015", "dom"],
-    "types": ["node", "mocha", "chai", "enzyme"],
+    "types": ["node", "mocha", "chai", "enzyme", "chai-enzyme"],
     "typeRoots": ["node_modules/@types", "types"]
   }
 }

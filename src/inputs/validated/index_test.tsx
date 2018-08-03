@@ -1,13 +1,16 @@
 /* eslint-env node, mocha */
-//import * as React from 'react';
-//import Validated from './';
-//import TextInput from '../formatted_input/text_input';
+import * as React from 'react';
+import { expect } from 'chai';
+import { before } from 'mocha';
+import { shallow } from 'enzyme';
 
-//const ValidatedInput = Validated(TextInput);
+
+import Validated from './';
+import TextInput from '../formatted_input/text_input';
+
+const ValidatedInput = Validated(TextInput);
 
 describe('Validated', () => {
-  it('works', () => {});
-  /*
   let wrapper, errors;
 
   beforeEach(() => {
@@ -50,5 +53,4 @@ describe('Validated', () => {
       itDoesNotDisplayErrors();
     });
   });
-*/
 });
