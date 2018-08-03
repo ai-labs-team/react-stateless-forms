@@ -1,11 +1,11 @@
 class IsRequiredValidator {
 
-  validate(value) {
+  validate1() {
     // eslint-disable-next-line no-undefined
-    const invalidValues = ['', null, undefined, NaN, 'on'];
-    if (invalidValues.includes(value)) {
-      return ['This value is required.'];
-    }
+    // const invalidValues = ['', null, undefined, NaN, 'on'];
+    // if (invalidValues.includes(value)) {
+    //   return ['This value is required.'];
+    // }
     return [];
   }
 }

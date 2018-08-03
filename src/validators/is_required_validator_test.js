@@ -1,5 +1,4 @@
 /* eslint-env node, mocha */
-
 import IsRequiredValidator from './is_required_validator';
 
 describe('IsRequiredValidator', () => {
