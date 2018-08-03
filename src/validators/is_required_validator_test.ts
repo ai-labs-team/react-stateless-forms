@@ -1,4 +1,6 @@
-/* eslint-env node, mocha */
+import { expect } from 'chai';
+import 'mocha';
+
 import IsRequiredValidator from './is_required_validator';
 
 describe('IsRequiredValidator', () => {
@@ -30,7 +32,6 @@ describe('IsRequiredValidator', () => {
     });
 
     describe('when the provided string is undefined', () => {
-      // eslint-disable-next-line no-undefined
       before(() => { testValue = undefined; });
       itProvidesValidErrors();
     });
