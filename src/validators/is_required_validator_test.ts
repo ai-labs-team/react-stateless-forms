@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import 'mocha';
+import { before } from 'mocha';
 
 import IsRequiredValidator from './is_required_validator';
 
@@ -17,7 +17,7 @@ describe('IsRequiredValidator', () => {
     const itProvidesValidErrors = () => {
       it('returns a non-empty errors array and a descriptive error string', () => {
         expect(result.length).not.to.eql(0);
-        expect(result[0]).to.eql('Required field');
+        expect(result[0]).to.eql('This value is required.');
       });
     };
 

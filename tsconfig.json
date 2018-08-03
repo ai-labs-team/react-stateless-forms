@@ -13,7 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,
     "sourceMap": true,
-    "inlineSourceMap": true,
     "noImplicitAny": false,
     "noImplicitReturns": true,
     "noUnusedLocals": true,
