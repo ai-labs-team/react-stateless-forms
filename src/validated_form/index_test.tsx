@@ -5,7 +5,6 @@ import * as React from 'react';
 import { shallow, mount } from 'enzyme';
 import * as sinon from 'sinon';
 import { expect } from 'chai';
-import { before } from 'mocha';
 
 import SubmitButton from '../inputs/submit_button';
 import ValidatedSubmit from '../inputs/validated_submit';
@@ -166,7 +165,6 @@ describe('ValidatedForm', () => {
       });
 
       it('does not present non-submit input in disabled state', () => {
-        console.log(wrapper.html());
         expect(wrapper.find('input[type="text"]')).to.not.have.attr('disabled');
       });
     });
