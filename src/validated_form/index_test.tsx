@@ -172,11 +172,10 @@ describe('ValidatedForm', () => {
   });
 
   describe('displaying backend errors', () => {
-    let errors, subject, wrapper;
+    let errors, wrapper;
 
     beforeEach(() => {
-      subject = <ValidatedForm errors={errors} validationSet={new ValidationSet()}/>;
-      wrapper = mount(subject);
+      wrapper = mount(<ValidatedForm errors={errors} validationSet={new ValidationSet()}/>);
     });
 
     describe('when only a single error is provided', () => {
