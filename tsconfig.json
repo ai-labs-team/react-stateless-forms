@@ -19,7 +19,7 @@
     "noUnusedLocals": true,
     "outDir": "./dist/",
     "lib": ["es7", "es2015", "dom"],
-    "types": ["node", "mocha", "chai", "enzyme", "chai-enzyme"],
+    "types": ["node", "mocha", "chai", "sinon", "sinon-chai", "enzyme", "chai-enzyme"],
     "typeRoots": ["node_modules/@types", "types"]
   }
 }

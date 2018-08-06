@@ -30,12 +30,12 @@ const isFullyValidated = ({ fieldErrors, requiredKeys }) =>
 
 const isSubmittable = ({ submitting, fieldErrors, validators }) =>
   !submitting &&
-  noErrors(fieldErrors) &&
-  isFullyValidated({ fieldErrors, requiredKeys: requiredFields(validators) });
+    noErrors(fieldErrors) &&
+    isFullyValidated({ fieldErrors, requiredKeys: requiredFields(validators) });
 
 const validatedChildren =
-  (children, { submitting, fieldErrors, onUpdate, fieldValues, validationSet: { validators } }) =>
-    cloneRecursive(children, child => {
+  (children, { submitting, fieldErrors, onUpdate, fieldValues, validators }) => {
+    return cloneRecursive(children, child => {
       if (!child || !child.type || !child.props) { return {}; }
 
       const { props } = child;
@@ -60,6 +60,7 @@ const validatedChildren =
         label,
       });
     });
+  };
 
 const objToErrorMsg = obj => obj && obj.message || obj.error_description || obj;
 
@@ -73,7 +74,7 @@ const messageFromError = error => (
 
 const renderErrors = pipe(defaultTo([]), uniq, map(objToErrorMsg), map(messageFromError));
 
-const handleSubmit = curry(({ submitting, fieldErrors, validationSet: { validators }, fieldValues, onSubmit }, event) => {
+const handleSubmit = curry(({ submitting, fieldErrors, validators, fieldValues, onSubmit }, event) => {
   (event as Event).preventDefault();
 
   if (isSubmittable({ submitting, fieldErrors, validators })) {
@@ -82,33 +83,33 @@ const handleSubmit = curry(({ submitting, fieldErrors, validationSet: { validato
 });
 
 type ValidatedFormProps = {
-  fieldValues?: any[];
+  fieldValues?: {};
   errors?: Array<{error: string; error_description: string} | string>;
-  onSubmit: (msg?: any) => void;
-  onUpdate: (msg?: any) => void;
+  onSubmit?: (msg?: any) => void;
+  onUpdate?: (msg?: any) => void;
   submitting?: boolean;
-  validationSet?: ValidationSet,
+  validationSet: ValidationSet,
   children?: React.ReactNode,
 };
 
 const ValidatedForm = withProps<ValidatedFormProps, any>(
   {
-    validKeys: ({ validationSet }) => validationSet.validatorKeys,
     fieldErrors: ({ validationSet, fieldValues }) => validationSet.validate(fieldValues),
   },
   ({
-    fieldErrors,
+    fieldErrors = {},
     fieldValues = [],
     submitting = false,
-    onSubmit,
-    onUpdate,
+    onSubmit = () => {},
+    onUpdate = () => {},
     children,
     errors,
-    validationSet = new ValidationSet() }) => (
+    validationSet: { validators },
+  }) => (
     <div>
       { renderErrors(errors) }
-      <form onSubmit={handleSubmit({ submitting, fieldErrors, validationSet, fieldValues, onSubmit })}>
-        { validatedChildren(children, { submitting, fieldErrors, onUpdate, fieldValues, validationSet }) }
+      <form onSubmit={handleSubmit({ submitting, fieldErrors, validators, fieldValues, onSubmit })}>
+        { validatedChildren(children, { submitting, fieldErrors, onUpdate, fieldValues, validators }) }
       </form>
     </div>
 ));

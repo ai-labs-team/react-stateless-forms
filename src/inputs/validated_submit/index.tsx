@@ -4,7 +4,6 @@ import * as React from 'react';
 type ValidatedSubmitProps = {
   dataTestId: string;
   value: string;
-  size: 'large' | 'small';
 };
 
 type formRoleProps = {
