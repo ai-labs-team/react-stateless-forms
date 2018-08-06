@@ -97,7 +97,7 @@ const ValidatedForm = withProps<ValidatedFormProps, any>(
   },
   ({
     fieldErrors = {},
-    fieldValues = [],
+    fieldValues = {},
     submitting = false,
     onSubmit = () => {},
     onUpdate = () => {},

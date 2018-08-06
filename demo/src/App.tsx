@@ -1,8 +1,9 @@
 import * as React from 'react';
 import './App.css';
 
-import MatchValidationExample from './matchValidationExample';
-import RequiredInputsExample from './requiredInputsExample';
+import MatchValidationExample from './match_validation_example';
+import RequiredInputsExample from './required_inputs_example';
+import ValuesHydrationExample from './values_hydration_example';
 
 class App extends React.Component {
 
@@ -19,6 +20,9 @@ class App extends React.Component {
 
           <h3>Example: Ensure field values match</h3>
           <MatchValidationExample />
+
+          <h3>Example: Prepopluate values in the form</h3>
+          <ValuesHydrationExample />
         </div>
       </div>
     );
