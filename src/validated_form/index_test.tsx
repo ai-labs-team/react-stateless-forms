@@ -1,11 +1,9 @@
-/* eslint-env node, mocha */
-
 import * as React from 'react';
 
 import { shallow, mount } from 'enzyme';
 import * as sinon from 'sinon';
 import { expect } from 'chai';
-import { before, beforeEach } from 'mocha';
+import { describe, it, before, beforeEach } from 'mocha';
 
 import SubmitButton from '../inputs/submit_button';
 import ValidatedSubmit from '../inputs/validated_submit';
@@ -90,8 +88,8 @@ describe('ValidatedForm', () => {
     beforeEach(() => {
       wrapper = mount(
         <ValidatedForm validationSet={validationSetMock}>
-          <ValidatedTextInput id='input1' type='text' />
-          <ValidatedTextInput id='input2' type='text' />
+          <ValidatedTextInput id='input1' />
+          <ValidatedTextInput id='input2' />
           <ValidatedSubmitButton value='Submit' />
         </ValidatedForm>
       );
@@ -144,7 +142,7 @@ describe('ValidatedForm', () => {
     const onSubmitSpy = sinon.spy();
     const wrapper = mount(
       <ValidatedForm submitting onSubmit={onSubmitSpy} validationSet={new ValidationSet()}>
-        <ValidatedTextInput type='text' />
+        <ValidatedTextInput type='not-submit' />
         <ValidatedSubmitButton value='Submit' />
       </ValidatedForm>
     );
@@ -166,7 +164,7 @@ describe('ValidatedForm', () => {
       });
 
       it('does not present non-submit input in disabled state', () => {
-        expect(wrapper.find('input[type="text"]')).to.not.have.attr('disabled');
+        expect(wrapper.find('input[type="not-submit"]')).to.not.have.attr('disabled');
       });
     });
   });
@@ -212,8 +210,8 @@ describe('ValidatedForm', () => {
         <ValidatedForm validationSet={validationSetMock}>
           <div>
             <section>
-              <ValidatedTextInput id='input1' type='text' />
-              <ValidatedTextInput id='input2' type='text' />
+              <ValidatedTextInput id='input1' />
+              <ValidatedTextInput id='input2' />
             </section>
           </div>
           <div>

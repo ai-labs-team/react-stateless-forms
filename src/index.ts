@@ -11,3 +11,4 @@ export { default as ValidatedForm } from './validated_form/container';
 export { default as ValidationSet} from './validation_set';
 
 export { default as IsRequiredValidator } from './validators/is_required_validator';
+export { default as FieldMatchMetavalidator } from './validators/field_match_metavalidator';
