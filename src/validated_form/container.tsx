@@ -3,6 +3,7 @@ import { /* always, evolve, */ merge, omit, /* pathOr */ } from 'ramda';
 import { /* commands, */ container, /* message, */ PARENT, replace } from 'casium';
 import Message, { Activate, Deactivate, Refresh } from 'casium/message';
 // import { Post } from 'casium/commands/http';
+import ValidationSet from '../validation_set';
 
 /*
 import { AuthenticatedPatch, AuthenticatedPost, AuthenticatedPut } from 'messages/commands/http';
@@ -42,6 +43,7 @@ const requestTypes = {
 type validProps = {
   type: string,
   onUpdate: Function,
+  validationSet: ValidationSet,
 };
 
 /*

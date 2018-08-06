@@ -1,9 +1,10 @@
-/* eslint-env node, mocha */
+import { expect } from 'chai';
+import { describe, it, beforeEach } from 'mocha';
 
-import ValidationSet from './validation_set';
-import StringLengthValidator from './validators/string_length_validator';
-import EmailValidator from './validators/email_validator';
-import FieldMatchMetavalidator from './validators/field_match_metavalidator';
+import ValidationSet from './';
+import StringLengthValidator from '../validators/string_length_validator';
+import EmailValidator from '../validators/email_validator';
+import FieldMatchMetavalidator from '../validators/field_match_metavalidator';
 
 describe('ValidationSet', () => {
   let result;
@@ -212,17 +213,17 @@ describe('ValidationSet', () => {
     });
 
     it('returns no errors for a valid field', () => {
-      expect(subject.validateField({ key2: 'hi' }, subject.validators.key2, 'key2')).to.eql([]);
+      expect(subject.validateField({ key2: 'hi' }, subject.validators['key2'], 'key2')).to.eql([]);
     });
 
     it('returns an error in an array for an invalid field', () => {
-      expect(subject.validateField({ key2: '' }, subject.validators.key2, 'key2').length).to.eql(1);
+      expect(subject.validateField({ key2: '' }, subject.validators['key2'], 'key2').length).to.eql(1);
     });
 
     it('returns an array of errors for a field with multiple problems', () => {
       expect(subject.validateField(
         { key1: '', key2: 'h' },
-        subject.validators.key1,
+        subject.validators['key1'],
         'key1'
       ).length).to.eql(2);
     });
