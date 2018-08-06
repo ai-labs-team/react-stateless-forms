@@ -1,4 +1,5 @@
-/* eslint-env node, mocha */
+import { expect } from 'chai';
+import { describe, it, before, beforeEach } from 'mocha';
 
 import IsRequiredValidator from './is_required_validator';
 
@@ -16,7 +17,7 @@ describe('IsRequiredValidator', () => {
     const itProvidesValidErrors = () => {
       it('returns a non-empty errors array and a descriptive error string', () => {
         expect(result.length).not.to.eql(0);
-        expect(result[0]).to.eql('Required field');
+        expect(result[0]).to.eql('This value is required.');
       });
     };
 
@@ -31,7 +32,6 @@ describe('IsRequiredValidator', () => {
     });
 
     describe('when the provided string is undefined', () => {
-      // eslint-disable-next-line no-undefined
       before(() => { testValue = undefined; });
       itProvidesValidErrors();
     });
