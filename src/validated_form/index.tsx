@@ -34,8 +34,8 @@ const isSubmittable = ({ submitting, fieldErrors, validators }) =>
     isFullyValidated({ fieldErrors, requiredKeys: requiredFields(validators) });
 
 const validatedChildren =
-  (children, { submitting, fieldErrors, onUpdate, fieldValues, validators }) => {
-    return cloneRecursive(children, child => {
+  (children, { submitting, fieldErrors, onUpdate, fieldValues, validators }) =>
+    cloneRecursive(children, child => {
       if (!child || !child.type || !child.props) { return {}; }
 
       const { props } = child;
@@ -60,7 +60,6 @@ const validatedChildren =
         label,
       });
     });
-  };
 
 const objToErrorMsg = obj => obj && obj.message || obj.error_description || obj;
 
