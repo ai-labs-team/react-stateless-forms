@@ -61,13 +61,11 @@ const validatedChildren =
       });
     });
 
-const objToErrorMsg = obj => obj && obj.message || obj.error_description || obj;
+const objToErrorMsg = obj => obj && obj.error_description || obj;
 
-const messageFromError = error => (
+const messageFromError = (error) => (
   <div key={error}>
-    <ErrorBox>
-      <p>{error}</p>
-    </ErrorBox>
+    <ErrorBox children={<p>{`${error }`}</p>} />
   </div>
 );
 

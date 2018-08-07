@@ -182,8 +182,7 @@ describe('ValidatedForm', () => {
       });
 
       it('displays the error', () => {
-        expect(wrapper).to.contain.text(errors.error);
-        expect(wrapper).to.contain.text(errors.error_description);
+        expect(wrapper).to.contain.text('so sorry, you blew it');
       });
     });
 
@@ -195,10 +194,15 @@ describe('ValidatedForm', () => {
         ];
       });
 
-      it('displays the errors', () => {
+      it('displays the error descriptions', () => {
         expect(wrapper).to.contain.text(errors[0].error_description);
         expect(wrapper).to.contain.text(errors[1].error_description);
       });
+
+      it('does not display the technical error content', () => {
+        expect(wrapper).not.to.contain.text(errors[0].error);
+        expect(wrapper).not.to.contain.text(errors[1].error);
+      })
     });
   });
 
