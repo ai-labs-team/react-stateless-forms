@@ -3,6 +3,7 @@ import './App.css';
 
 import MatchValidationExample from './match_validation_example';
 import RequiredInputsExample from './required_inputs_example';
+import ServerErrorsExample from './server_errors_example';
 import ValuesHydrationExample from './values_hydration_example';
 
 class App extends React.Component {
@@ -23,6 +24,9 @@ class App extends React.Component {
 
           <h3>Example: Prepopluate values in the form</h3>
           <ValuesHydrationExample />
+
+          <h3>Example: Include server-side errors</h3>
+          <ServerErrorsExample />
         </div>
       </div>
     );
