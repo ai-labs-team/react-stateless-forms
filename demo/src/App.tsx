@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './App.css';
 
+import CustomValidatorsExample from './custom_validators_example';
 import MatchValidationExample from './match_validation_example';
 import RequiredInputsExample from './required_inputs_example';
 import ServerErrorsExample from './server_errors_example';
@@ -44,6 +45,18 @@ class App extends React.Component {
             server and display errors in context with the relevant form fields.
           </p>
           <ServerErrorsExample />
+
+          <h3>Example: Custom validation</h3>
+          <p>
+            This example demonstrates the use of custom validators.  Here, we use EmailValidator to ensure the
+            email field includes a "@" character, and we apply a string-length validator to the name field
+            to ensure it is at least 3 and most 8 characters long.
+          </p>
+          <p>
+            For good measure, we mix in a field match metavalidator to validate against a confirmation field and
+            make all fields required.
+          </p>
+          <CustomValidatorsExample />
         </div>
       </div>
     );

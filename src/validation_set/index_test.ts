@@ -2,9 +2,34 @@ import { expect } from 'chai';
 import { describe, it, beforeEach } from 'mocha';
 
 import ValidationSet from './';
-import StringLengthValidator from '../validators/string_length_validator';
-import EmailValidator from '../validators/email_validator';
 import FieldMatchMetavalidator from '../validators/field_match_metavalidator';
+
+class MinLengthValidator {
+  public length?: number;
+
+  constructor(length) { this.length = length; }
+
+  public validate(string: any): any {
+    return string.length < this.length ? ['string is too short'] : [];
+  }
+}
+
+class MaxLengthValidator {
+  public length?: number;
+
+  constructor(length) { this.length = length; }
+
+  public validate(string: any): any {
+    return string.length > this.length ? ['string is too long'] : [];
+  }
+}
+
+const EmailValidator = {
+  validate: (email) => email && (/.*@.*/.test(email) === false) ? ['Not a valid email address'] : [],
+}
+
+export default EmailValidator;
+
 
 describe('ValidationSet', () => {
   let result;
@@ -18,7 +43,7 @@ describe('ValidationSet', () => {
   });
 
   describe('when a single validation is specified on a single key', () => {
-    const subject = new ValidationSet({ input1: [new StringLengthValidator({ minLength: 10 })] });
+    const subject = new ValidationSet({ input1: [new MinLengthValidator(10)] });
 
     describe('when the input in invalid', () => {
       beforeEach(() => {
@@ -49,8 +74,8 @@ describe('ValidationSet', () => {
   describe('when multiple validations are specified on a single key', () => {
     const subject = new ValidationSet({
       input1: [
-        new StringLengthValidator({ maxLength: 2 }),
-        new EmailValidator(),
+        new MaxLengthValidator(2),
+        EmailValidator,
       ],
     });
 
@@ -75,8 +100,8 @@ describe('ValidationSet', () => {
 
   describe('when single validations are specified on multiple keys', () => {
     const subject = new ValidationSet({
-      email: [new EmailValidator()],
-      password: [new StringLengthValidator({ minLength: 8 })],
+      email: [EmailValidator],
+      password: [new MinLengthValidator(8)],
     });
 
     describe('when the input in invalid', () => {
@@ -105,8 +130,8 @@ describe('ValidationSet', () => {
 
   describe('when validation is performed on keys that have no configured validators', () => {
     const subject = new ValidationSet({
-      key1: [new EmailValidator()],
-      key2: [new EmailValidator()],
+      key1: [EmailValidator],
+      key2: [EmailValidator],
     });
 
     it('returns an empty errors hash', () => {
@@ -117,7 +142,7 @@ describe('ValidationSet', () => {
   describe('metavalidation', () => {
     describe('when done in isolation', () => {
       const subject = new ValidationSet({
-        password_confirmation: [new FieldMatchMetavalidator('password')],
+        password_confirmation: [new FieldMatchMetavalidator('password', 'an error message')],
       });
 
       it('provides a key for password_confirmation in the error hash', () => {
@@ -132,10 +157,10 @@ describe('ValidationSet', () => {
 
     describe('when done with standard validations', () => {
       const validations = {
-        password: [new StringLengthValidator({ minLength: 100 })],
+        password: [new MinLengthValidator(100)],
         password_confirmation: [
-          new StringLengthValidator({ maxLength: 1 }),
-          new FieldMatchMetavalidator('password'),
+          new MaxLengthValidator(1),
+          new FieldMatchMetavalidator('password', 'an error message'),
         ],
       };
       const subject = new ValidationSet(validations);
@@ -148,20 +173,20 @@ describe('ValidationSet', () => {
       });
 
       it('provides an error for password', () => {
-        expect(result.password).to.eql(['Must be at least 100 characters']);
+        expect(result.password).to.eql(['string is too short']);
       });
 
       it('provides two errors for password_confirmation', () => {
         expect(result.password_confirmation).to.eql([
-          'Cannot be more than 1 characters',
-          'Does not match',
+          'string is too long',
+          'an error message',
         ]);
       });
     });
 
     describe('when there are no errors', () => {
       const subject = new ValidationSet({
-        password_confirmation: [new FieldMatchMetavalidator('password')],
+        password_confirmation: [new FieldMatchMetavalidator('password', 'an error message')],
       });
 
       beforeEach(() => {
@@ -176,14 +201,14 @@ describe('ValidationSet', () => {
 
   describe('#toValidate', () => {
     const key1Validators = [
-      new StringLengthValidator({ maxLength: 1 }),
-      new FieldMatchMetavalidator('key2'),
+      new MaxLengthValidator(1),
+      new FieldMatchMetavalidator('key2', 'an error message'),
     ];
-    const key2Validator = [new StringLengthValidator({ maxLength: 1 })];
+    const key2Validator = [new MaxLengthValidator(1)];
     const subject = new ValidationSet({
       key1: key1Validators,
       key2: key2Validator,
-      key3: [new FieldMatchMetavalidator('key1')],
+      key3: [new FieldMatchMetavalidator('key1', 'an error message')],
     });
 
     it('ignores fields that are in validators but not passed in', () => {
@@ -205,11 +230,11 @@ describe('ValidationSet', () => {
   describe('#validateField', () => {
     const subject = new ValidationSet({
       key1: [
-        new StringLengthValidator({ minLength: 1 }),
-        new FieldMatchMetavalidator('key2'),
+        new MinLengthValidator(1),
+        new FieldMatchMetavalidator('key2', 'an error message'),
       ],
-      key2: [new StringLengthValidator({ minLength: 1 })],
-      key3: [new FieldMatchMetavalidator('key1')],
+      key2: [new MinLengthValidator(1)],
+      key3: [new FieldMatchMetavalidator('key1', 'an error message')],
     });
 
     it('returns no errors for a valid field', () => {

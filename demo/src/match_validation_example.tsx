@@ -12,7 +12,10 @@ import ValidatedFormContainer from './validated_form_container';
 
 const requiredInputsExample = () => {
   const validationSet = new ValidationSet({
-    matchingField: [new IsRequiredValidator(), new FieldMatchMetavalidator('field', 'Does not match')],
+    matchingField: [
+      new IsRequiredValidator(),
+      new FieldMatchMetavalidator('field', 'Must match')
+    ],
   });
 
   return (

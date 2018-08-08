@@ -1,8 +1,8 @@
 import { isNil, reject } from 'ramda';
 
 export type ValidatorConfig =
-  { minLength: number; } |
-    { maxLength: number; } |
+  { minLength: number } |
+    { maxLength: number } |
     { minLength: number; maxLength: number };
 
 export default class StringLengthValidator {
