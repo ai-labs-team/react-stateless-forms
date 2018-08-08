@@ -17,15 +17,32 @@ class App extends React.Component {
 
         <div className='App-intro'>
           <h3>Example: One optional input, one required</h3>
+          <p>
+            One input is required using the core IsRequiredValidator, the other is left unvalidated.
+          </p>
           <RequiredInputsExample />
 
           <h3>Example: Ensure field values match</h3>
+          <p>
+            Metavalidation allows cross-field checks.  Here we use FieldMatchMetavalidator to verify
+            the two fields have identical content.
+          </p>
           <MatchValidationExample />
 
           <h3>Example: Prepopluate values in the form</h3>
+          <p>
+            We can hydrate the form with initial values.  This example bypasses our container and simply
+            demonstrates the result on the view side.  In a production case, you would wire this to the global
+            state object.
+          </p>
           <ValuesHydrationExample />
 
           <h3>Example: Include server-side errors</h3>
+          <p>
+            The form accepts error objects for display of server-side errors post submission.  For now, this is
+            shown in a single block.  A future extension will allow the form to accept keys transmitted from the
+            server and display errors in context with the relevant form fields.
+          </p>
           <ServerErrorsExample />
         </div>
       </div>
