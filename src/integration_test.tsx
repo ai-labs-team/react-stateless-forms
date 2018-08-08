@@ -31,7 +31,7 @@ describe('Full integration test', () => {
   const validationSet = new ValidationSet({
     fieldA: [new IsRequiredValidator()],
     fieldB: [
-      new FieldMatchMetavalidator('fieldA'),
+      new FieldMatchMetavalidator('fieldA', 'does not match'),
       new IsRequiredValidator(),
     ],
   });
@@ -51,7 +51,7 @@ describe('Full integration test', () => {
 
     it('indicates invalid fields', () => {
       expect(wrapper).to.contain.text('This value is required');
-      expect(wrapper).to.contain.text('Does not match');
+      expect(wrapper).to.contain.text('does not match');
     });
 
     it('presents submit button as disabled', () => {
@@ -74,7 +74,7 @@ describe('Full integration test', () => {
 
     it('does not indicate invalid fields', () => {
       expect(wrapper).not.to.contain.text('This value is required');
-      expect(wrapper).not.to.contain.text('Does not match');
+      expect(wrapper).not.to.contain.text('does not match');
     });
 
     it('presents submit button as enabled', () => {
