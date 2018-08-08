@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import {
   FieldMatchMetavalidator,
-  ValidatedForm,
+  IsRequiredValidator,
   ValidatedSubmitButton,
   ValidatedTextInput,
   ValidationSet,
@@ -11,20 +11,22 @@ import {
 import EmailValidator from './validators/email_validator';
 import StringLengthValidator from './validators/string_length_validator';
 
+import ValidatedFormContainer from './validated_form_container';
+
 const customValidatorsExample = () => {
   const validationSet = new ValidationSet({
-    email: [new EmailValidator()],
-    name: [new StringLengthValidator({ minLength: 3, maxLength: 8 })],
-    nameConfirm: [new FieldMatchMetavalidator('name', 'Must match')],
+    email: [new EmailValidator(), new IsRequiredValidator()],
+    name: [new StringLengthValidator({ minLength: 3, maxLength: 8 }), new IsRequiredValidator()],
+    nameConfirm: [new FieldMatchMetavalidator('name', 'Must match'), new IsRequiredValidator()],
   });
 
   return (
-    <ValidatedForm validationSet={validationSet}>
-      <ValidatedTextInput key='email' label='Email address'/>
-      <ValidatedTextInput key='name' label='Enter your name'/>
-      <ValidatedTextInput key='nameConfirm' label='Enter your name again'/>
-      <ValidatedSubmitButton key='submitBtn' value='Submit'/>
-    </ValidatedForm>
+    <ValidatedFormContainer validationSet={validationSet}>
+      <ValidatedTextInput name='email' label='Email address'/>
+      <ValidatedTextInput name='name' label='Enter your name'/>
+      <ValidatedTextInput name='nameConfirm' label='Enter your name again'/>
+      <ValidatedSubmitButton name='submitBtn' value='Submit'/>
+    </ValidatedFormContainer>
   );
 };
 
