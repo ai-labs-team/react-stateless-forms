@@ -7,7 +7,7 @@ import ValidatedSubmit from './inputs/validated_submit';
 export const ValidatedTextInput = Validated(TextInput);
 export const ValidatedSubmitButton = ValidatedSubmit(SubmitButton);
 
-export { default as ValidatedForm } from './validated_form/container';
+export { default as ValidatedForm } from './validated_form';
 export { default as ValidationSet} from './validation_set';
 
 export { default as IsRequiredValidator } from './validators/is_required_validator';

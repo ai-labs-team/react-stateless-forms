@@ -7,7 +7,7 @@ import {
   ValidationSet,
 } from 'casium-forms';
 
-const errors = [{ error: 'something', error_description: 'the thing you submitted was wrong!' }];
+const errors = [{ error: 'Technical details here.', error_description: 'There was an error with your submission.' }];
 
 const serverErrorsExample = () => (
   <ValidatedForm
