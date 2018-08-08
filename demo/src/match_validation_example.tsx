@@ -11,7 +11,10 @@ import {
 
 const requiredInputsExample = () => {
   const validationSet = new ValidationSet({
-    matchingField: [new IsRequiredValidator(), new FieldMatchMetavalidator('field')],
+    matchingField: [
+      new IsRequiredValidator(),
+      new FieldMatchMetavalidator('field', 'Must match')
+    ],
   });
 
   return (

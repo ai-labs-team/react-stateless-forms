@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './App.css';
 
+import CustomValidatorsExample from './custom_validators_example';
 import MatchValidationExample from './match_validation_example';
 import RequiredInputsExample from './required_inputs_example';
 import ServerErrorsExample from './server_errors_example';
@@ -27,6 +28,9 @@ class App extends React.Component {
 
           <h3>Example: Include server-side errors</h3>
           <ServerErrorsExample />
+
+          <h3>Example: Custom validation</h3>
+          <CustomValidatorsExample />
         </div>
       </div>
     );

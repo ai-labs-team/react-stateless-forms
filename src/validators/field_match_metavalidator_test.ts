@@ -7,7 +7,7 @@ describe('FieldMatchMetavalidator', () => {
   let result;
 
   describe('when the fields match', () => {
-    const subject = new FieldMatchMetavalidator('password');
+    const subject = new FieldMatchMetavalidator('password', "Doesn't match");
 
     beforeEach(() => {
       result = subject.validate('my password', {
@@ -22,7 +22,7 @@ describe('FieldMatchMetavalidator', () => {
   });
 
   describe('when the fields do not match', () => {
-    const subject = new FieldMatchMetavalidator('password');
+    const subject = new FieldMatchMetavalidator('password', "Doesn't match");
 
     describe('and the test field is included in the provided fields', () => {
       beforeEach(() => {
@@ -33,7 +33,7 @@ describe('FieldMatchMetavalidator', () => {
       });
 
       it('returns an error on the first field provided in the constructor saying it does not match', () => {
-        expect(result).to.eql(['Does not match']);
+        expect(result).to.eql(["Doesn't match"]);
       });
     });
 
@@ -45,7 +45,7 @@ describe('FieldMatchMetavalidator', () => {
       });
 
       it('also returns a validation error', () => {
-        expect(result).to.eql(['Does not match']);
+        expect(result).to.eql(["Doesn't match"]);
       });
     });
   });

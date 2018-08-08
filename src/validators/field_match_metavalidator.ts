@@ -1,21 +1,18 @@
 /*
-* Given the key for a field, will validate that the value provided against the value of
-* that field to see if they match.
-*
-* Any errors will show on the field that the validator is associated with in the validation
-* set object - that is, the field whose value is passed to `validate`.
+* Given the key for a field to match against, checks if the provided value matches the current value of
+* the match field.
 */
-class FieldMatchMetavalidator {
+export default class FieldMatchMetavalidator {
   matchKey: string;
+  errorMessage: string;
 
-  constructor(matchKey) {
+  constructor(matchKey, errorMessage) {
     this.matchKey = matchKey;
+    this.errorMessage = errorMessage;
   }
 
   validate(value, fields) {
     const showError = !fields[this.matchKey] || value !== fields[this.matchKey];
-    return showError ? ['Does not match'] : [];
+    return showError ? [this.errorMessage] : [];
   }
 }
-
-export default FieldMatchMetavalidator;
