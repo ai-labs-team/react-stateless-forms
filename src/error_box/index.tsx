@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-const ErrorBox = ({ children }: { children: React.ReactNode }) => (
+const ErrorBox = (props) => (
   <div className='error-message-box'>
-    { children }
+    { props.children }
   </div>
 );
 

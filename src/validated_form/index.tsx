@@ -69,7 +69,7 @@ const messageFromError = (error) => (
   </div>
 );
 
-const renderErrors = (errors) => pipe(defaultTo([]), uniq, map(objToErrorMsg), map(messageFromError));
+const renderErrors = pipe(defaultTo([]), uniq, map(objToErrorMsg), map(messageFromError));
 
 const handleSubmit = curry(({ submitting, fieldErrors, validators, fieldValues, onSubmit }, event) => {
   (event as Event).preventDefault();
