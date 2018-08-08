@@ -1,5 +1,3 @@
-import { any, isNil } from 'ramda';
-
 /*
 * Given the key for a field, will validate that the value provided against the value of
 * that field to see if they match.
@@ -15,12 +13,8 @@ class FieldMatchMetavalidator {
   }
 
   validate(value, fields) {
-    const showError = this.valuesPresent(value, fields) && value !== fields[this.matchKey];
+    const showError = !fields[this.matchKey] || value !== fields[this.matchKey];
     return showError ? ['Does not match'] : [];
-  }
-
-  valuesPresent(value, fields) {
-    return !any(isNil, [this.matchKey, value, fields[this.matchKey]]);
   }
 }
 

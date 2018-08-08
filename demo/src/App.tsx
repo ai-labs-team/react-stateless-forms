@@ -1,7 +1,10 @@
 import * as React from 'react';
 import './App.css';
 
-import DemoForm from './demoForm';
+import MatchValidationExample from './match_validation_example';
+import RequiredInputsExample from './required_inputs_example';
+import ServerErrorsExample from './server_errors_example';
+import ValuesHydrationExample from './values_hydration_example';
 
 class App extends React.Component {
 
@@ -11,8 +14,19 @@ class App extends React.Component {
         <header className='App-header'>
           <h1 className='App-title'>casium-forms demo</h1>
         </header>
+
         <div className='App-intro'>
-          <DemoForm />
+          <h3>Example: One optional input, one required</h3>
+          <RequiredInputsExample />
+
+          <h3>Example: Ensure field values match</h3>
+          <MatchValidationExample />
+
+          <h3>Example: Prepopluate values in the form</h3>
+          <ValuesHydrationExample />
+
+          <h3>Example: Include server-side errors</h3>
+          <ServerErrorsExample />
         </div>
       </div>
     );

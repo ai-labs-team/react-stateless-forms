@@ -24,43 +24,28 @@ describe('FieldMatchMetavalidator', () => {
   describe('when the fields do not match', () => {
     const subject = new FieldMatchMetavalidator('password');
 
-    beforeEach(() => {
-      result = subject.validate('a different string', {
-        password: 'one string',
-        password_confirmation: 'a different string',
-      });
-    });
-
-    it('returns an error on the first field provided in the constructor ' +
-      'saying it does not match', () => {
-      expect(result).to.eql(['Does not match']);
-    });
-  });
-
-  describe('error conditions', () => {
-    describe('when invalid keys are provided', () => {
-      const subject = new FieldMatchMetavalidator('anything');
-
+    describe('and the test field is included in the provided fields', () => {
       beforeEach(() => {
-        result = subject.validate('a value', {
-          randomKey: 'something',
+        result = subject.validate('a different string', {
+          password: 'one string',
+          password_confirmation: 'a different string',
         });
       });
 
-      it('validates with no errors', () => {
-        expect(result).to.eql([]);
+      it('returns an error on the first field provided in the constructor saying it does not match', () => {
+        expect(result).to.eql(['Does not match']);
       });
     });
 
-    describe('when invalid fields are provided', () => {
-      const subject = new FieldMatchMetavalidator('matchKey');
-
+    describe('and the test field is not included', () => {
       beforeEach(() => {
-        result = subject.validate('a value', {});
+        result = subject.validate('test value is missing!', {
+          password_confirmation: 'I do not validate no matter what value I take',
+        });
       });
 
-      it('validates with no errors', () => {
-        expect(result).to.eql([]);
+      it('also returns a validation error', () => {
+        expect(result).to.eql(['Does not match']);
       });
     });
   });

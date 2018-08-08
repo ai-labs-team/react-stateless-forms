@@ -1,11 +1,9 @@
-/* eslint-env node, mocha */
-
 import * as React from 'react';
 
 import { shallow, mount } from 'enzyme';
 import * as sinon from 'sinon';
 import { expect } from 'chai';
-import { before, beforeEach } from 'mocha';
+import { describe, it, before, beforeEach } from 'mocha';
 
 import SubmitButton from '../inputs/submit_button';
 import ValidatedSubmit from '../inputs/validated_submit';
@@ -90,8 +88,8 @@ describe('ValidatedForm', () => {
     beforeEach(() => {
       wrapper = mount(
         <ValidatedForm validationSet={validationSetMock}>
-          <ValidatedTextInput id='input1' type='text' />
-          <ValidatedTextInput id='input2' type='text' />
+          <ValidatedTextInput id='input1' />
+          <ValidatedTextInput id='input2' />
           <ValidatedSubmitButton value='Submit' />
         </ValidatedForm>
       );
@@ -144,7 +142,7 @@ describe('ValidatedForm', () => {
     const onSubmitSpy = sinon.spy();
     const wrapper = mount(
       <ValidatedForm submitting onSubmit={onSubmitSpy} validationSet={new ValidationSet()}>
-        <ValidatedTextInput type='text' />
+        <ValidatedTextInput type='not-submit' />
         <ValidatedSubmitButton value='Submit' />
       </ValidatedForm>
     );
@@ -166,7 +164,7 @@ describe('ValidatedForm', () => {
       });
 
       it('does not present non-submit input in disabled state', () => {
-        expect(wrapper.find('input[type="text"]')).to.not.have.attr('disabled');
+        expect(wrapper.find('input[type="not-submit"]')).to.not.have.attr('disabled');
       });
     });
   });
@@ -184,8 +182,7 @@ describe('ValidatedForm', () => {
       });
 
       it('displays the error', () => {
-        expect(wrapper).to.contain.text(errors.error);
-        expect(wrapper).to.contain.text(errors.error_description);
+        expect(wrapper).to.contain.text('so sorry, you blew it');
       });
     });
 
@@ -197,10 +194,15 @@ describe('ValidatedForm', () => {
         ];
       });
 
-      it('displays the errors', () => {
+      it('displays the error descriptions', () => {
         expect(wrapper).to.contain.text(errors[0].error_description);
         expect(wrapper).to.contain.text(errors[1].error_description);
       });
+
+      it('does not display the technical error content', () => {
+        expect(wrapper).not.to.contain.text(errors[0].error);
+        expect(wrapper).not.to.contain.text(errors[1].error);
+      })
     });
   });
 
@@ -212,8 +214,8 @@ describe('ValidatedForm', () => {
         <ValidatedForm validationSet={validationSetMock}>
           <div>
             <section>
-              <ValidatedTextInput id='input1' type='text' />
-              <ValidatedTextInput id='input2' type='text' />
+              <ValidatedTextInput id='input1' />
+              <ValidatedTextInput id='input2' />
             </section>
           </div>
           <div>
