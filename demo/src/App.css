@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center;*/
 }
 
 .App-logo {
@@ -20,9 +20,75 @@
 
 .App-intro {
   font-size: large;
+  margin-left: 20px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+
+.stateless-forms-input-style {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.stateless-forms-input-style label {
+  top: -12px;
+  margin-left: 16px;
+  display: inline-flex;
+  cursor: pointer;
+  user-select: none;
+  padding: 0 8px;
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  align-items: flex-end;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.stateless-forms-input-style input {
+  width: 80%;
+  display: block;
+  padding: 20px;
+  font-size: 14px;
+  border: 1px solid rgb(204,204,204);
+}
+
+.stateless-forms-input-style input:focus {
+  outline: none;
+  border-color: black;
+  box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.stateless-forms-input-style input:focus+label {
+  color: black;
+}
+
+.stateless-forms-input-style.error label {
+  color: rgb(235,95,95);
+}
+
+.stateless-forms-input-style.error input {
+  border-color: rgb(235,95,95);
+}
+
+.stateless-forms-input-style.error input:focus {
+  outline: 0px solid transparent;
+  border-color: rgb(235,95,95);
+  box-shadow: 0px 0px 1px rgba(235,95,95,0.5);
+}
+
+.stateless-forms-input-style.error input:focus+label {
+  color: rgb(235,95,95);
+}
+
+.stateless-forms-input-style.error input:focus:hover {
+  border-color: rgb(235,95,95);
+}
+
+.stateless-forms-input-style span {
+    top: -2px;
+    left: 12px;
+  }
+
+.stateless-forms-input-style input {
+    padding: 16px 18px;
 }
