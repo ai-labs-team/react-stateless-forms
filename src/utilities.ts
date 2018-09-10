@@ -59,7 +59,7 @@ export const cloneRecursive = (children, newProps): ReadonlyArray<any> => React.
   const mapProps = (child) => {
     const props = is(Function, newProps) ? newProps(child) : newProps;
     const hasChildren = child.props && child.props.children;
-    const mapper = hasChildren && is(Array, child.props.children) ? identity : nth(0);
+    const mapper: (any) => boolean = hasChildren && is(Array, child.props.children) ? identity : nth(0);
     const children = hasChildren ? mapper(cloneRecursive(child.props.children, newProps)) : null;
     return mergeDeep(props || {}, { children });
   };
