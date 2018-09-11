@@ -1,9 +1,9 @@
 {
   "name": "casium-forms",
   "version": "0.0.1",
-  "main": "src/index.js",
-  "types": "dist/index.d.js",
+  "module": "dist/index.js",
   "browser": "dist/casium-forms.umd.js",
+  "types": "dist/index.d.js",
   "files": [
     "dist"
   ],

@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
-    "casium": "^2.2.0",
-    "casium-forms": "file:../dist",
+    "casium-forms": "file:///Users/dhawt/Dev/casium-forms/plugin",
     "deep-freeze-strict": "^1.1.0",
     "js-cookie": "^2.1.4",
     "prop-types": "^15.6.0",
