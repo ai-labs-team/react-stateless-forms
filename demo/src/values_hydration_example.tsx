@@ -6,7 +6,7 @@ import {
   ValidatedSubmitButton,
   ValidatedTextInput,
   ValidationSet,
-} from 'casium-forms';
+} from 'react-stateless-forms';
 
 const valuesHydrationExample = () => {
   const validationSet = new ValidationSet({

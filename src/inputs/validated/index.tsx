@@ -1,4 +1,4 @@
-import { withProps } from 'casium';
+import { withProps } from '../../utilities';
 import { assocPath, isEmpty, omit } from 'ramda';
 import * as React from 'react';
 
