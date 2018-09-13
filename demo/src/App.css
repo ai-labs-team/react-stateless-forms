@@ -92,3 +92,45 @@
 .stateless-forms-input-style input {
     padding: 16px 18px;
 }
+
+
+.stateless-forms-submit-button-style input {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.14);
+
+  appearance: none;
+  display: inline-block;
+  text-transform: capitalize;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1;
+  border: 1px solid rgb(204,204,204);
+
+  color: white;
+  background: rgb(27,144,200);
+  padding: 16px 44px;
+  border-radius: 3px;
+  margin: 0;
+}
+
+.stateless-forms-submit-button-style input:hover {
+  background-color: rgb(72,166,213);
+  text-decoration: none;
+}
+
+.stateless-forms-submit-button-style input:disabled {
+  background-color: rgb(245,245,245);
+  cursor: default;
+}
+
+.stateless-forms-error-message {
+  color: rgb(235,95,95);
+  font-size: 14px;
+  padding-left: 20px;
+}
+
+.stateless-forms-error-box {
+  background-color: rgb(235,95,95);
+  color: white;
+}

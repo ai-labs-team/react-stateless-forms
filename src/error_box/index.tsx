@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const ErrorBox = (props) => (
-  <div className='error-message-box'>
+  <div className='stateless-forms-error-box'>
     { props.children }
   </div>
 );
