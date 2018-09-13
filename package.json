@@ -1,22 +1,23 @@
 {
-  "name": "casium-forms",
+  "name": "react-stateless-forms",
   "version": "0.0.1",
-  "main": "src/index.js",
+  "module": "dist/index.js",
+  "browser": "dist/react-stateless-forms.umd.js",
   "types": "dist/index.d.js",
-  "browser": "dist/casium-forms.umd.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rm -r ./dist; tsc; cp package.json ./dist; rollup -c",
+    "peers": "install-self-peers --npm -- --ignore-scripts",
+    "build": "npm run peers; rm -r ./dist; tsc; cp package.json ./dist; rollup -c",
     "test": "mocha -r test/setup.js --opts test/mocha.opts"
   },
   "peerDependencies": {
-    "casium": "^2.2.1",
     "ramda": "^0.25.0",
     "react": "^16.4.1"
   },
   "devDependencies": {
+    "@team-griffin/install-self-peers": "^1.1.1",
     "@types/chai": "^4.1.4",
     "@types/chai-enzyme": "^0.6.4",
     "@types/enzyme": "^3.1.12",
@@ -29,7 +30,6 @@
     "@types/sinon": "^5.0.1",
     "@types/sinon-chai": "^3.2.0",
     "axios": "^0.18.0",
-    "casium": "^2.2.1",
     "chai": "^4.1.2",
     "chai-enzyme": "^1.0.0-beta.1",
     "deep-freeze-strict": "^1.1.1",
@@ -39,8 +39,6 @@
     "jsdom": "^11.12.0",
     "jsdom-global": "^3.0.2",
     "mocha": "^5.2.0",
-    "ramda": "^0.25.0",
-    "react": "^16.4.1",
     "react-dom": "^16.4.2",
     "rollup": "^0.63.5",
     "rollup-plugin-commonjs": "^9.1.3",

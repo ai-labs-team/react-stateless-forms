@@ -6,7 +6,7 @@ import {
   ValidatedSubmitButton,
   ValidatedTextInput,
   ValidationSet,
-} from 'casium-forms';
+} from 'react-stateless-forms';
 
 import ValidatedFormContainer from './validated_form_container';
 

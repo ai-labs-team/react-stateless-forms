@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <div className='App'>
         <header className='App-header'>
-          <h1 className='App-title'>casium-forms demo</h1>
+          <h1 className='App-title'>react-stateless-forms demo</h1>
         </header>
 
         <div className='App-intro'>

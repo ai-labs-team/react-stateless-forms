@@ -19,7 +19,7 @@ import {
 } from 'ramda';
 import ValidationSet from '../validation_set';
 import ErrorBox from '../error_box';
-import { withProps, cloneRecursive } from 'casium';
+import { withProps, cloneRecursive } from '../utilities';
 import IsRequiredValidator from '../validators/is_required_validator';
 
 export const hasRequiredValidator = any(is(IsRequiredValidator));
