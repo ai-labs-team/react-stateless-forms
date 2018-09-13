@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { omit } from 'ramda';
 
-import { ValidatedForm, ValidationSet } from 'casium-forms';
+import { ValidatedForm, ValidationSet } from 'react-stateless-forms';
 
 export type ValidatedFormContainerProps = {
   validationSet: ValidationSet;

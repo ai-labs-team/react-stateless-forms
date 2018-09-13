@@ -1,8 +1,8 @@
 {
-  "name": "casium-forms",
+  "name": "react-stateless-forms",
   "version": "0.0.1",
   "module": "dist/index.js",
-  "browser": "dist/casium-forms.umd.js",
+  "browser": "dist/react-stateless-forms.umd.js",
   "types": "dist/index.d.js",
   "files": [
     "dist"

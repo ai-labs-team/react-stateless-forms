@@ -12,7 +12,7 @@ $ npm install
 $ npm run build
 $ npm link
 $ cd demo
-$ npm link casium-forms
+$ npm link react-stateless-forms
 $ npm install
 $ npm run start
 ```

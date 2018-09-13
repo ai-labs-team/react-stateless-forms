@@ -5,7 +5,7 @@ import {
   ValidatedSubmitButton,
   ValidatedTextInput,
   ValidationSet,
-} from 'casium-forms';
+} from 'react-stateless-forms';
 
 const errors = [{ error: 'Technical details here.', error_description: 'There was an error with your submission.' }];
 

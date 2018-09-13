@@ -7,7 +7,7 @@ export default [
     input: 'dist/index.js',
     external: ['react'],
     output: {
-      name: 'casium-forms',
+      name: 'react-stateless-forms',
       file: pkg.browser,
       format: 'umd',
       globals: {
