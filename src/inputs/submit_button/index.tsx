@@ -10,7 +10,7 @@ type SubmitButtonProps = {
 };
 
 export default ({ value, size = 'small', disabled = false, link = false, dataTestId, ...props }: SubmitButtonProps) => (
-  <div className={classNames(['stateless-forms-submit-button-style', { [size]: size, disabled, link }])}>
+  <div className={classNames(['react-stateless-forms-submit-button', { [size]: size, disabled, link }])}>
     <input type='submit' disabled={disabled} data-test-id={dataTestId} value={value} {...props} />
   </div>
 );

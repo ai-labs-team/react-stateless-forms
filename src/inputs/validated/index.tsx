@@ -30,7 +30,7 @@ const eventToObject = (e: any) => {
 
 const hasErrorMessages = ({ errors, name }: { errors?: object; name: string }) =>
   errors && errors[name] && !isEmpty(errors[name]);
-const toError = (error: string) => <p className='stateless-forms-error-message' key={error.trim()}>{error}</p>;
+const toError = (error: string) => <p className='react-stateless-forms-error-message' key={error.trim()}>{error}</p>;
 
 export default <P extends {} = React.SFC<any>>(Child: React.ComponentType<P>): any =>
   Object.assign(

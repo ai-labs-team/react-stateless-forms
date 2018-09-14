@@ -111,7 +111,7 @@ export default class FormattedInput extends React.Component<FormattedInputProps,
     const value = this.state.formattedValue, tabIndex = disableTab ? -1 : 0;
 
     return (
-      <section className={`FormattedInput stateless-forms-input-style  ${error ? 'error' : ''}`}>
+      <section className={`react-stateless-forms-formatted-input  ${error ? 'error' : ''}`}>
         <input
           ref={this.setInputRef}
           data-test-id={name}
