@@ -45,7 +45,7 @@ export default <P extends {} = React.SFC<any>>(Child: React.ComponentType<P>): a
           hasErrorMessages({ errors, name }) && toError(errors[name][0]) || null,
       },
       ({ errorMessages, ...props }: ValidatedProps & ValidatedComputedProps) => (
-        <div className='error-container'>
+        <div className='react-stateless-forms-error-message-container'>
           <Child {...omit(['onValidate', 'errors'], props) as any} />
           {errorMessages}
         </div>
