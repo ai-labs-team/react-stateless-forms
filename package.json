@@ -1,6 +1,7 @@
 {
   "name": "react-stateless-forms",
   "version": "0.0.1",
+  "license": "MIT",
   "module": "dist/index.js",
   "browser": "dist/react-stateless-forms.umd.js",
   "types": "dist/index.d.js",
