@@ -1,5 +1,6 @@
 import { merge, omit } from 'ramda';
 import * as React from 'react';
+import * as classNames from 'classnames';
 
 export type FormattedInputPropsWithoutFormat = {
   name: string;
@@ -111,7 +112,7 @@ export default class FormattedInput extends React.Component<FormattedInputProps,
     const value = this.state.formattedValue, tabIndex = disableTab ? -1 : 0;
 
     return (
-      <section className={`FormattedInput input-style  ${error ? 'error' : ''}`}>
+      <section className={classNames('react-stateless-forms-formatted-input', { error })}>
         <input
           ref={this.setInputRef}
           data-test-id={name}

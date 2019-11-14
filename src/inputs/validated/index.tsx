@@ -30,7 +30,7 @@ const eventToObject = (e: any) => {
 
 const hasErrorMessages = ({ errors, name }: { errors?: object; name: string }) =>
   errors && errors[name] && !isEmpty(errors[name]);
-const toError = (error: string) => <p className='error-message' key={error.trim()}>{error}</p>;
+const toError = (error: string) => <p className='react-stateless-forms-error-message' key={error.trim()}>{error}</p>;
 
 export default <P extends {} = React.SFC<any>>(Child: React.ComponentType<P>): any =>
   Object.assign(
@@ -45,7 +45,7 @@ export default <P extends {} = React.SFC<any>>(Child: React.ComponentType<P>): a
           hasErrorMessages({ errors, name }) && toError(errors[name][0]) || null,
       },
       ({ errorMessages, ...props }: ValidatedProps & ValidatedComputedProps) => (
-        <div className='error-container'>
+        <div className='react-stateless-forms-error-message-container'>
           <Child {...omit(['onValidate', 'errors'], props) as any} />
           {errorMessages}
         </div>
